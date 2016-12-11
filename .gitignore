@@ -93,3 +93,6 @@ ENV/
 
 # TurboGear development database
 devdata.db
+
+# Pycharm project files
+.idea/
