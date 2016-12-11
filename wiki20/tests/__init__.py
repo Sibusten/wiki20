@@ -2,12 +2,12 @@
 """Unit and functional test suite for wiki20."""
 
 from os import getcwd
-from paste.deploy import loadapp
-from webtest import TestApp
+
 from gearbox.commands.setup_app import SetupAppCommand
+from paste.deploy import loadapp
 from tg import config
 from tg.util import Bunch
-
+from webtest import TestApp
 from wiki20 import model
 
 __all__ = ['setup_app', 'setup_db', 'teardown_db', 'TestController']

@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 """Main Controller"""
 
-from tg import expose, flash, require, url, lurl
-from tg import request, redirect, tmpl_context
-from tg.i18n import ugettext as _, lazy_ugettext as l_
-from tg.exceptions import HTTPFound
+from tg import expose, flash, require, lurl
 from tg import predicates
-from wiki20 import model
-from wiki20.controllers.secure import SecureController
-from wiki20.model import DBSession
-from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
+from tg import request, redirect, tmpl_context
+from tg.exceptions import HTTPFound
+from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tgext.admin.controller import AdminController
-
-from wiki20.lib.base import BaseController
+from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
+from wiki20 import model
 from wiki20.controllers.error import ErrorController
+from wiki20.controllers.secure import SecureController
+from wiki20.lib.base import BaseController
+from wiki20.model import DBSession
 
 __all__ = ['RootController']
 
@@ -44,6 +43,7 @@ class RootController(BaseController):
     def index(self):
         """Handle the front-page."""
         return dict(page='index')
+
     @expose('wiki20.templates.about')
     def about(self):
         """Handle the 'about' page."""
@@ -62,6 +62,7 @@ class RootController(BaseController):
         for a data page and a display page.
         """
         return dict(page='data', params=kw)
+
     @expose('wiki20.templates.index')
     @require(predicates.has_permission('manage', msg=l_('Only for managers')))
     def manage_permission_only(self, **kw):

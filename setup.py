@@ -17,12 +17,14 @@ except:
     pass
 
 import sys
+
 py_version = sys.version_info[:2]
 
 try:
     from setuptools import setup, find_packages
 except ImportError:
     from ez_setup import use_setuptools
+
     use_setuptools()
     from setuptools import setup, find_packages
 
@@ -44,7 +46,7 @@ install_requires = [
     "tw2.forms",
     "tgext.admin >= 0.6.1",
     "WebHelpers2",
-	"docutils"
+    "docutils"
 ]
 
 if py_version != (3, 2):

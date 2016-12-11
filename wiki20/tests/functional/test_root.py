@@ -22,7 +22,7 @@ class TestRootController(TestController):
     def test_index(self):
         """The front page is working properly"""
         response = self.app.get('/')
-        msg = 'TurboGears 2 is rapid web application development toolkit '\
+        msg = 'TurboGears 2 is rapid web application development toolkit ' \
               'designed to make your life easier.'
         # You can look for specific strings:
         ok_(msg in response)
@@ -34,6 +34,7 @@ class TestRootController(TestController):
         # links = response.html.findAll('a')
         # print(links)
         # ok_(links, "Mummy, there are no links here!")
+
     def test_environ(self):
         """Displaying the wsgi environ works"""
         response = self.app.get('/environ.html')
@@ -52,6 +53,7 @@ class TestRootController(TestController):
             dict(page='data', params={'a': '1', 'b': '2'}) == resp.json,
             resp.json
         )
+
     def test_secc_with_manager(self):
         """The manager can access the secure controller"""
         # Note how authentication is forged:

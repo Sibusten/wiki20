@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Setup the wiki20 application"""
 from __future__ import print_function, unicode_literals
+
 import transaction
 from wiki20 import model
 
@@ -51,4 +52,4 @@ def bootstrap(command, conf, vars):
         transaction.abort()
         print('Continuing with bootstrapping...')
 
-    # <websetup.bootstrap.after.auth>
+        # <websetup.bootstrap.after.auth>
