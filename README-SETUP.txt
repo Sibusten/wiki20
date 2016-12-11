@@ -44,4 +44,6 @@ pip install tg.devtools
 
 pip install -e .
 
+gearbox setup-app
+
 gearbox serve
