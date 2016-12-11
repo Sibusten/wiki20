@@ -15,7 +15,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Causing problems. lib/ folder needed in project
+# lib/
 lib64/
 parts/
 sdist/
