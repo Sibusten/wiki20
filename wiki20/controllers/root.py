@@ -50,7 +50,7 @@ class RootController(BaseController):
         page = DBSession.query(Page).filter_by(pagename=pagename).one()
         return dict(wikipage=page)
 
-    @expose('wiki20.templates.save')
+    @expose()
     def save(self, pagename, data, submit):
         page = DBSession.query(Page).filter_by(pagename=pagename).one()
         page.data = data
