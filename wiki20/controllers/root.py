@@ -59,6 +59,11 @@ class RootController(BaseController):
         content = wikiwords.sub(r'<a href="{}\1">\1</a>'.format(root), content)
         return dict(content=content, wikipage=page)
 
+    @expose('wiki20.templates.pagelist')
+    def pagelist(self):
+        pages = [page.pagename for page in DBSession.query(Page).order_by(Page.pagename)]
+        return dict(pages=pages)
+
     @expose('wiki20.templates.edit')
     def notfound(self, pagename):
         page = Page(pagename=pagename, data="")
