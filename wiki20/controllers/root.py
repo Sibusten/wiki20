@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Main Controller"""
 
-from tg import expose, flash, require, lurl
+import re
+
+from docutils.core import publish_parts
+from tg import expose, flash, require, lurl, url
 from tg import predicates
 from tg import request, redirect, tmpl_context
 from tg.exceptions import HTTPFound
@@ -16,6 +19,8 @@ from wiki20.model import DBSession
 from wiki20.model.page import Page
 
 __all__ = ['RootController']
+
+wikiwords = re.compile(r'\b([A-Z]\w+[A-Z]+\w+)')
 
 
 class RootController(BaseController):
@@ -43,7 +48,10 @@ class RootController(BaseController):
     @expose('wiki20.templates.page')
     def _default(self, pagename="FrontPage"):
         page = DBSession.query(Page).filter_by(pagename=pagename).one()
-        return dict(wikipage=page)
+        content = publish_parts(page.data, writer_name="html")["html_body"]
+        root = url("/")
+        content = wikiwords.sub(r'<a href="{}\1">\1</a>'.format(root), content)
+        return dict(content=content, wikipage=page)
 
     @expose('wiki20.templates.edit')
     def edit(self, pagename):
